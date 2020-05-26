@@ -1,4 +1,5 @@
-
+from collections import Counter
+import csv
 z = 0
 
 
@@ -32,5 +33,28 @@ for key in count.keys():
 
 print(count)
 
-sorted ={k: v for k, v in sorted(count.items(), key=lambda item: item[1])}
-print(sorted)
+
+c = Counter(count)
+ordered = c.most_common()
+print(type(ordered[1]))
+final = []
+for i in range( len(ordered) ):
+    temp = []
+    temp.append(i + 1)
+    temp.append(ordered[i][0])
+    temp.append(ordered[i][1])
+    final.append(temp)
+    temp = []
+
+t20s = []
+for i in range(20 ):
+    temp = []
+    temp.append(i + 1)
+    temp.append(ordered[i][0])
+    temp.append(ordered[i][1])
+    t20s.append(temp)
+    temp = []
+
+with open("t20.csv", "w", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerows(t20s)
